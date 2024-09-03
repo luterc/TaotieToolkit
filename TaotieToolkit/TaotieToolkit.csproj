@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4B6CC3D9-4686-4156-AF98-CFF104746DE8}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TaotieToolkit</RootNamespace>
+    <AssemblyName>TaotieToolkit</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TaotieToolkit.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="modules\infogather\Browser\ChromiumBookmarksCommand.cs" />
+    <Compile Include="modules\infogather\Browser\ChromiumHistoryCommand.cs" />
+    <Compile Include="modules\infogather\Browser\FirefoxHistoryCommand.cs" />
+    <Compile Include="modules\infogather\Browser\InternetExplorerFavoritesCommand.cs" />
+    <Compile Include="utils\command\CommandManager.cs" />
+    <Compile Include="utils\command\ICommand.cs" />
+    <Compile Include="utils\command\ICommandMarker.cs" />
+    <Compile Include="modules\evasion\Amsi.cs" />
+    <Compile Include="modules\evasion\ETW.cs" />
+    <Compile Include="modules\evasion\OperateUAC.cs" />
+    <Compile Include="modules\infogather\Activity.cs" />
+    <Compile Include="modules\infogather\AllUserDirectories.cs" />
+    <Compile Include="modules\infogather\ApplockerEnumerating.cs" />
+    <Compile Include="modules\infogather\AVAndEDR.cs" />
+    <Compile Include="modules\evasion\BypassDefender.cs" />
+    <Compile Include="modules\infogather\ClipboardGet.cs" />
+    <Compile Include="modules\infogather\Drives.cs" />
+    <Compile Include="modules\infogather\EnvironmentalVariables.cs" />
+    <Compile Include="modules\infogather\GetRecycle.cs" />
+    <Compile Include="modules\infogather\EnvironmentalVersion.cs" />
+    <Compile Include="modules\infogather\GetSystemInfo.cs" />
+    <Compile Include="modules\infogather\LAPS.cs" />
+    <Compile Include="modules\infogather\NetworkConnentions.cs" />
+    <Compile Include="modules\infogather\RecentFiles.cs" />
+    <Compile Include="modules\systemcontrol\BlockUserOperate.cs" />
+    <Compile Include="modules\systemcontrol\Power.cs" />
+    <Compile Include="modules\infogather\Screenshot.cs" />
+    <Compile Include="modules\infogather\ProcessList.cs" />
+    <Compile Include="config\InfoConfig.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="modules\infogather\Status.cs" />
+    <Compile Include="modules\systemcontrol\TaskManager.cs" />
+    <Compile Include="utils\AesEncryption.cs" />
+    <Compile Include="utils\litjson\IJsonWrapper.cs" />
+    <Compile Include="utils\litjson\JsonData.cs" />
+    <Compile Include="utils\litjson\JsonException.cs" />
+    <Compile Include="utils\litjson\JsonMapper.cs" />
+    <Compile Include="utils\litjson\JsonMockWrapper.cs" />
+    <Compile Include="utils\litjson\JsonReader.cs" />
+    <Compile Include="utils\litjson\JsonWriter.cs" />
+    <Compile Include="utils\litjson\Lexer.cs" />
+    <Compile Include="utils\litjson\Netstandard15Polyfill.cs" />
+    <Compile Include="utils\litjson\ParserToken.cs" />
+    <Compile Include="utils\Native.cs" />
+    <Compile Include="utils\PlatformInvoke\Native.cs" />
+    <Compile Include="utils\PlatformInvoke\Win32.cs" />
+    <Compile Include="utils\RegistryUtil.cs" />
+    <Compile Include="utils\Utils.cs" />
+    <Compile Include="utils\Win32.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Shell32">
+      <Guid>{50A7E9B0-70EF-11D1-B75A-00A0C90564FE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

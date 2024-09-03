@@ -1,0 +1,41 @@
+# TaotieToolkit
+信息收集的工具，加了一丢到bypass的功能
+
+## Usage:
+
+```
+Usage: -h 显示此帮助信息
+       TaotieToolkit All                                   //所有信息收集操作
+       TaotieToolkit EnvironmentalVariables                //环境变量
+       TaotieToolkit GetRecycle                            //回收站
+       TaotieToolkit AllUserDirectories                    //用户目录
+       TaotieToolkit PowershellInfo                        //powershell信息
+       TaotieToolkit CsharpVersion                         //c#版本
+       TaotieToolkit AvProcessEDRproduct                   //杀软或edr查询
+       TaotieToolkit Defender                              //Windows Defender排除项
+       TaotieToolkit RecentFiles                           //最近的文件
+       TaotieToolkit NetworkConnentions                    //网络连接
+       TaotieToolkit ApplockerEnumerating                  //枚举AppLocker
+       TaotieToolkit Drives                                //磁盘情况
+       TaotieToolkit LAPS                                  //枚举LAPS
+       TaotieToolkit GetProcessList                        //枚举所有进程信息
+       TaotieToolkit GetClipboard                          //获取剪贴板数据
+       TaotieToolkit GetSystemInfo                         //获取系统信息
+       TaotieToolkit GetScreenshot                         //获取屏幕截图
+       TaotieToolkit DisableTaskManager                    //禁用任务管理器
+       TaotieToolkit EnableTaskManager                     //启用任务管理器
+       TaotieToolkit GetWindowTitle                        //获取活动窗口
+       TaotieToolkit UserIsActive                          //用户当前是否处于活动状态
+       TaotieToolkit DisableDefender                       //禁用Windows Defender
+       TaotieToolkit DisableUAC                            //禁用UAC
+       TaotieToolkit EnableUAC                             //启用UAC
+       TaotieToolkit BlockMouseAndKeyboard second          //禁用键盘和鼠标，second为时间，单位为秒
+       TaotieToolkit Shutdown                              //关机
+       TaotieToolkit Reboot                                //重启
+       TaotieToolkit Hibernate                             //休眠
+       TaotieToolkit Logoff                                //注销登录
+       TaotieToolkit IsInVirtualBox                        //是否在VirtualBox虚拟机中
+       TaotieToolkit IsInSandboxie                         //是否在Sandboxie沙箱中
+       TaotieToolkit IsDebugger                            //是否为被调试状态
+```
+
