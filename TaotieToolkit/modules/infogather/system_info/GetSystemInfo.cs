@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Management;
-using System.Text;
-using System.Threading.Tasks;
 using TaotieToolkit.config;
 
-namespace TaotieToolkit.modules.infogather
+namespace TaotieToolkit.modules.infogather.system_info
 {
     class GetSystemInfo : ICommand, ICommandMarker
     {

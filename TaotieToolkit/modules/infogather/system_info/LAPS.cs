@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaotieToolkit.config;
 
-namespace TaotieToolkit.modules.infogather
+namespace TaotieToolkit.modules.infogather.system_info
 {
     internal class LAPS : ICommand, ICommandMarker
     {

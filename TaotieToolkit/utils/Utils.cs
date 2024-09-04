@@ -73,7 +73,7 @@ namespace TaotieToolkit
             get { return IntPtr.Size == 8; }
         }
 
-
+     
         public static string[] GetDirectories(string relPath)
         {
             relPath = relPath.Trim('\\');

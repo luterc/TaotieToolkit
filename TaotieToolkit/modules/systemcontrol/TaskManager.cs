@@ -1,9 +1,8 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Diagnostics;
+﻿using System;
+using Microsoft.Win32;
 using TaotieToolkit.config;
 
-namespace TaotieToolkit
+namespace TaotieToolkit.modules.systemcontrol
 {
     internal class DisableTaskManager : ICommand, ICommandMarker
     {

@@ -1,14 +1,10 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Security.Principal;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using Microsoft.Win32;
 using TaotieToolkit.config;
 
-namespace TaotieToolkit.modules.infogather
+namespace TaotieToolkit.modules.infogather.system_info
 {
     internal class EnvironmentalVariables : ICommand, ICommandMarker
     {

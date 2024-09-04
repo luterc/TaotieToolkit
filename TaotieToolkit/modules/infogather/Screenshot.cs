@@ -5,7 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using TaotieToolkit.config;
 
-namespace TaotieToolkit
+namespace TaotieToolkit.modules.infogather
 {
     internal class Screenshot : ICommand, ICommandMarker
     {

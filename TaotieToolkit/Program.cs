@@ -1,4 +1,5 @@
-﻿using TaotieToolkit.config;
+﻿using System.Linq;
+using TaotieToolkit.config;
 
 namespace TaotieToolkit
 {
@@ -17,7 +18,7 @@ namespace TaotieToolkit
                 return;
             }
             var commandKey = args[0]; // 假设命令键由模块名和子命令名组成
-            var commandArgs = args.Length > 1 ? args : new string[0];
+            var commandArgs = args.Length > 1 ? args.Skip(1).ToArray() : new string[0];
             CommandManager.ExecuteCommand(commandKey, commandArgs);
         }
 

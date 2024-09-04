@@ -2,10 +2,9 @@
 using System.Management;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Windows.Forms;
 using TaotieToolkit.config;
 
-namespace TaotieToolkit
+namespace TaotieToolkit.modules.infogather.security
 {
    class IsInVirtualMachine : ICommand, ICommandMarker
     {

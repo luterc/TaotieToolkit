@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net.NetworkInformation;
 using TaotieToolkit.config;
 
-namespace TaotieToolkit.modules.infogather
+namespace TaotieToolkit.modules.infogather.system_info
 {
     internal class NetworkConnentions : ICommand, ICommandMarker
     {
@@ -22,7 +18,7 @@ namespace TaotieToolkit.modules.infogather
             TcpConnectionInformation[] tcpConnections = ipProperties.GetActiveTcpConnections();
             foreach (TcpConnectionInformation info in tcpConnections)
             {
-                Console.WriteLine("\tLocal : " + info.LocalEndPoint.Address.ToString() + ":" + info.LocalEndPoint.Port.ToString() + " - Remote : " + info.RemoteEndPoint.Address.ToString() + ":" + info.RemoteEndPoint.Port.ToString());
+                Console.WriteLine("\tLocal : " + info.LocalEndPoint.Address + ":" + info.LocalEndPoint.Port + " - Remote : " + info.RemoteEndPoint.Address + ":" + info.RemoteEndPoint.Port);
             }
         }
     }

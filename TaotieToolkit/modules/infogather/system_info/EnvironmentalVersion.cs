@@ -1,13 +1,9 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Win32;
 using TaotieToolkit.config;
 
-namespace TaotieToolkit.modules.infogather
+namespace TaotieToolkit.modules.infogather.system_info
 {
     class EnvironmentalVersion : ICommand, ICommandMarker
     {

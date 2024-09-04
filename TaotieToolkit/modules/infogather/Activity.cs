@@ -2,9 +2,8 @@
 using System.Runtime.InteropServices;
 using System.Text;
 using TaotieToolkit.config;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
-namespace TaotieToolkit
+namespace TaotieToolkit.modules.infogather
 {
 	internal class GetWindowTitle : ICommand, ICommandMarker
     {
