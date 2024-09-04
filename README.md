@@ -74,33 +74,33 @@ private void DefineParams()
 }
 //处理及使用当前参数
 public void Execute(string[] args)
-      {
-          DefineParams();
-          if (args.Length == 0) {
-              argParse.Usage();
-              return;
-          }
-          try
-          {
-              argParse.Parse(args);
-              OptionSet activeOptionSet = argParse.GetActiveOptionSet();
-              if (activeOptionSet.Name.Equals("Analysis command"))
-              {
-                  Option option = activeOptionSet.GetOption("-lp");
-                  int localport = int.Parse(option.ParamValue);
-                  option = activeOptionSet.GetOption("-rh");
-                  string remotehost = option.ParamValue;
-                  option = activeOptionSet.GetOption("-rp");
-                  int remoteport = int.Parse(option.ParamValue);
-              }
-              else {
-                  argParse.Usage();
-              }
-          }
-          catch (Exception exception)
-          {
-              System.Console.WriteLine("exception: " + exception.Message);
-          }
+{
+    DefineParams();
+    if (args.Length == 0) {
+        argParse.Usage();
+        return;
+    }
+    try
+    {
+        argParse.Parse(args);
+        OptionSet activeOptionSet = argParse.GetActiveOptionSet();
+        if (activeOptionSet.Name.Equals("Analysis command"))
+        {
+            Option option = activeOptionSet.GetOption("-lp");
+            int localport = int.Parse(option.ParamValue);
+            option = activeOptionSet.GetOption("-rh");
+            string remotehost = option.ParamValue;
+            option = activeOptionSet.GetOption("-rp");
+            int remoteport = int.Parse(option.ParamValue);
+        }
+        else {
+            argParse.Usage();
+        }
+    }
+    catch (Exception exception)
+    {
+        System.Console.WriteLine("exception: " + exception.Message);
+    }
 }
 ```
 
