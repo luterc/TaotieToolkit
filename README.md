@@ -15,18 +15,22 @@ Usage:
        TaotieToolkit ChromiumBookmarks              抓取任何找到的Chrome/Edge/BBrave/Opera书签
        TaotieToolkit ChromiumHistory                抓取任何找到的Chrome/Edge/BBrave/Opera历史
        TaotieToolkit ClipboardGet                   获取剪贴板数据
-       TaotieToolkit COM                            abusing the Microsoft Component Object Model to establish peristence
+       TaotieToolkit COM                            Abusing the Microsoft Component Object Model to establish peristence
+       TaotieToolkit ComputerDefaults               Bypasses UAC by performing an image hijack on the .msc file extension, Example:TaotieToolkit ComputerDefaults Y21kIC9jIHN0YXJ0IGNhbGMuZXhl==
        TaotieToolkit CsharpVersion                  c#版本
        TaotieToolkit Defender                       Windows Defender排除项
        TaotieToolkit DisableDefender                禁用Windows Defender
        TaotieToolkit DisableTaskManager             禁用任务管理器
        TaotieToolkit DisableUAC                     禁用UAC
+       TaotieToolkit DiskCleanup                    Bypasses UAC by performing an image hijack on the .msc file extension, Example:TaotieToolkit DiskCleanup Y21kIC9jIHN0YXJ0IGNhbGMuZXhlICYmIFJFTQ==
        TaotieToolkit Drives                         磁盘情况
        TaotieToolkit ElevatedRegistryUserInitKey    在本地计算机的注册表中创建一个键，用于在登录时运行脚本。
        TaotieToolkit EnableTaskManager              启用任务管理器
        TaotieToolkit EnableUAC                      启用UAC
        TaotieToolkit EnvironmentalVariables         环境变量
+       TaotieToolkit EventVwr                       Bypasses UAC by performing an image hijack on the .msc file extension, Example:TaotieToolkit EventVwr Y21kIC9jIHN0YXJ0IGNhbGMuZXhl
        TaotieToolkit FirefoxHistory                 抓取任何找到的FireFox历史
+       TaotieToolkit FodHelper                      Bypass UAC via fodhelper.exe, Example:TaotieToolkit FodHelper Y21kIC9jIHN0YXJ0IGNhbGMuZXhl
        TaotieToolkit GetProcessList                 枚举所有进程信息
        TaotieToolkit GetRecycle                     回收站
        TaotieToolkit GetSystemInfo                  获取系统信息
@@ -49,14 +53,16 @@ Usage:
        TaotieToolkit Reboot                         重启
        TaotieToolkit RecentFiles                    最近的文件
        TaotieToolkit Screenshot                     获取屏幕截图
-       TaotieToolkit Service                        创建一个服务。
+       TaotieToolkit Sdclt                          Fileless UAC bypass via COM hijack using sdtlc.exe auto-elevated process, Example:TaotieToolkit Sdclt Y21kIC9jIHN0YXJ0IGNhbGMuZXhl
+       TaotieToolkit Service                        创建一个服务用以维持权限。
        TaotieToolkit Shares                         List network share information from all machines in the current domain
        TaotieToolkit SharpDoor                      Allowed multiple RDP sessions by patching termsrv.dll file
        TaotieToolkit Shutdown                       关机
+       TaotieToolkit Slui                           Slui file handler hijack privilege escalation, Example:TaotieToolkit Slui Y21kIC9jIHN0YXJ0IGNhbGMuZXhl
        TaotieToolkit Tokens                         Token manipulation that can be used to impersonate other users, run commands as other user
        TaotieToolkit UserInitMprLogonScriptKey      在当前用户的注册表中创建一个键，用于在登录时运行脚本。
        TaotieToolkit UserIsActive                   用户当前是否处于活动状态
-       TaotieToolkit WMIEventSub                    WMI event subscription.
+       TaotieToolkit WMIEventSub                    WMI event subscription peristence
 ```
 
 ## 添加功能：
