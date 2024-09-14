@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Management;
+using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,16 +14,17 @@ namespace TaotieToolkit
 {
     class Utils
     {
-        public static void PowerCommand(string args)
+
+        public static bool PowerCommand(string command)
         {
             Process process = new Process();
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            startInfo.FileName = "shutdown.exe";
-            startInfo.Arguments = args;
-            process.StartInfo = startInfo;
-            process.Start();
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            process.StartInfo.FileName = "cmd.exe";
+            process.StartInfo.Arguments = "/c " + command;
+
+            return process.Start();
         }
+
         public static bool isAdmin()
         {
             bool result;
@@ -79,5 +82,40 @@ namespace TaotieToolkit
             relPath = relPath.Trim('\\');
             return System.IO.Directory.GetDirectories($"{Environment.GetEnvironmentVariable("SystemDrive")}\\{relPath}\\");
         }
+        public static string GetMd5Hash(string input)
+        {
+            MD5 md5Hash = MD5.Create();
+
+            // Convert the input string to a byte array and compute the hash.
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            // Create a new Stringbuilder to collect the bytes
+            // and create a string.
+            StringBuilder sBuilder = new StringBuilder();
+
+            // Loop through each byte of the hashed data 
+            // and format each one as a hexadecimal string.
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            // Return the hexadecimal string.
+            return sBuilder.ToString();
+        }
+        public static void AlwaysNotify()
+        {
+            RegistryKey alwaysNotify = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System");
+            string consentPrompt = alwaysNotify.GetValue("ConsentPromptBehaviorAdmin").ToString();
+            string secureDesktopPrompt = alwaysNotify.GetValue("PromptOnSecureDesktop").ToString();
+            alwaysNotify.Close();
+
+            if (consentPrompt == "2" & secureDesktopPrompt == "1")
+            {
+                Console.WriteLine("UAC is set to 'Always Notify.' This attack will fail. Exiting...");
+                Environment.Exit(1);
+            }
+        }
+
     }
 }

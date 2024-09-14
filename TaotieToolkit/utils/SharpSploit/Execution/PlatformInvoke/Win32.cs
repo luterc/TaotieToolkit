@@ -7,8 +7,9 @@ using System.Text;
 using System.Runtime.InteropServices;
 
 using MW32 = Microsoft.Win32;
+using Execute = SharpSploit.Execution;
 
-namespace Utils.PlatformInvoke
+namespace SharpSploit.Execution.PlatformInvoke
 {
     /// <summary>
     /// Win32 is a library of PInvoke signatures for Win32 API functions.
@@ -34,7 +35,7 @@ namespace Utils.PlatformInvoke
 
             [DllImport("kernel32.dll")]
             public static extern void GetSystemInfo(
-                out Utils.Win32.WinBase._SYSTEM_INFO lpSystemInfo
+                out Execute.Win32.WinBase._SYSTEM_INFO lpSystemInfo
             );
 
             [DllImport("kernel32.dll", SetLastError = true)]
@@ -50,7 +51,7 @@ namespace Utils.PlatformInvoke
 
             [DllImport("kernel32.dll")]
             public static extern IntPtr OpenProcess(
-                Utils.Win32.Kernel32.ProcessAccessFlags dwDesiredAccess,
+                Execute.Win32.Kernel32.ProcessAccessFlags dwDesiredAccess,
                 bool bInheritHandle,
                 UInt32 dwProcessId
             );
@@ -126,7 +127,7 @@ namespace Utils.PlatformInvoke
             public static extern Int32 VirtualQueryEx32(
                 IntPtr hProcess,
                 IntPtr lpAddress,
-                out Utils.Win32.WinNT._MEMORY_BASIC_INFORMATION32 lpBuffer,
+                out Execute.Win32.WinNT._MEMORY_BASIC_INFORMATION32 lpBuffer,
                 UInt32 dwLength
             );
 
@@ -134,7 +135,7 @@ namespace Utils.PlatformInvoke
             public static extern Int32 VirtualQueryEx64(
                 IntPtr hProcess,
                 IntPtr lpAddress,
-                out Utils.Win32.WinNT._MEMORY_BASIC_INFORMATION64 lpBuffer,
+                out Execute.Win32.WinNT._MEMORY_BASIC_INFORMATION64 lpBuffer,
                 UInt32 dwLength
             );
 
@@ -142,7 +143,7 @@ namespace Utils.PlatformInvoke
             public static extern IntPtr VirtualAlloc(
                 IntPtr lpStartAddr,
                 uint size,
-                Utils.Win32.Kernel32.AllocationType flAllocationType,
+                Execute.Win32.Kernel32.AllocationType flAllocationType,
                 uint flProtect
             );
 
@@ -190,13 +191,13 @@ namespace Utils.PlatformInvoke
 
             [DllImport("kernel32.dll")]
             public static extern void GetNativeSystemInfo(
-                ref Utils.Win32.Kernel32.SYSTEM_INFO lpSystemInfo
+                ref Execute.Win32.Kernel32.SYSTEM_INFO lpSystemInfo
             );
 
             [DllImport("kernel32")]
             public static extern Int32 PssCaptureSnapshot(
                 IntPtr ProcessHandle,
-                Utils.Win32.Kernel32.PSS_CAPTURE_FLAGS CaptureFlags,
+                Execution.Win32.Kernel32.PSS_CAPTURE_FLAGS CaptureFlags,
                 Int32 ThreadContextFlags,
                 out IntPtr SnapshotHandle
             );
@@ -210,7 +211,7 @@ namespace Utils.PlatformInvoke
             [DllImport("kernel32")]
             public static extern Int32 PssQuerySnapshot(
                 IntPtr SnapshotHandle,
-                Utils.Win32.Kernel32.PSS_QUERY_INFORMATION_CLASS InformationClass,
+                Execution.Win32.Kernel32.PSS_QUERY_INFORMATION_CLASS InformationClass,
                 out IntPtr Buffer,
                 Int32 BufferLength
             );
@@ -242,7 +243,7 @@ namespace Utils.PlatformInvoke
             [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
             public static extern IntPtr SetWindowsHookEx(
                 int idHook,
-                Utils.Win32.User32.HookProc lpfn,
+                Execute.Win32.User32.HookProc lpfn,
                 IntPtr hMod,
                 uint dwThreadId
             );
@@ -334,15 +335,15 @@ namespace Utils.PlatformInvoke
             public static extern Boolean AdjustTokenPrivileges(
                 IntPtr TokenHandle,
                 Boolean DisableAllPrivileges,
-                ref Utils.Win32.WinNT._TOKEN_PRIVILEGES NewState,
+                ref Execute.Win32.WinNT._TOKEN_PRIVILEGES NewState,
                 UInt32 BufferLengthInBytes,
-                ref Utils.Win32.WinNT._TOKEN_PRIVILEGES PreviousState,
+                ref Execute.Win32.WinNT._TOKEN_PRIVILEGES PreviousState,
                 out UInt32 ReturnLengthInBytes
             );
 
             [DllImport("advapi32.dll", SetLastError = true)]
             public static extern Boolean AllocateAndInitializeSid(
-                ref Utils.Win32.WinNT._SID_IDENTIFIER_AUTHORITY pIdentifierAuthority,
+                ref Execute.Win32.WinNT._SID_IDENTIFIER_AUTHORITY pIdentifierAuthority,
                 byte nSubAuthorityCount,
                 Int32 dwSubAuthority0,
                 Int32 dwSubAuthority1,
@@ -357,7 +358,7 @@ namespace Utils.PlatformInvoke
 
             [DllImport("advapi32.dll", SetLastError = true)]
             public static extern Boolean AllocateAndInitializeSid(
-                ref Utils.Win32.WinNT._SID_IDENTIFIER_AUTHORITY pIdentifierAuthority,
+                ref Execute.Win32.WinNT._SID_IDENTIFIER_AUTHORITY pIdentifierAuthority,
                 byte nSubAuthorityCount,
                 Int32 dwSubAuthority0,
                 Int32 dwSubAuthority1,
@@ -367,7 +368,7 @@ namespace Utils.PlatformInvoke
                 Int32 dwSubAuthority5,
                 Int32 dwSubAuthority6,
                 Int32 dwSubAuthority7,
-                ref Utils.Win32.WinNT._SID pSid
+                ref Execute.Win32.WinNT._SID pSid
             );
 
             [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -381,14 +382,14 @@ namespace Utils.PlatformInvoke
                 IntPtr hToken,
                 IntPtr lpApplicationName,
                 IntPtr lpCommandLine,
-                ref Utils.Win32.WinBase._SECURITY_ATTRIBUTES lpProcessAttributes,
-                ref Utils.Win32.WinBase._SECURITY_ATTRIBUTES lpThreadAttributes,
+                ref Execute.Win32.WinBase._SECURITY_ATTRIBUTES lpProcessAttributes,
+                ref Execute.Win32.WinBase._SECURITY_ATTRIBUTES lpThreadAttributes,
                 Boolean bInheritHandles,
-                Utils.Win32.Advapi32.CREATION_FLAGS dwCreationFlags,
+                Execute.Win32.Advapi32.CREATION_FLAGS dwCreationFlags,
                 IntPtr lpEnvironment,
                 IntPtr lpCurrentDirectory,
-                ref Utils.Win32.ProcessThreadsAPI._STARTUPINFO lpStartupInfo,
-                out Utils.Win32.ProcessThreadsAPI._PROCESS_INFORMATION lpProcessInfo
+                ref Execute.Win32.ProcessThreadsAPI._STARTUPINFO lpStartupInfo,
+                out Execute.Win32.ProcessThreadsAPI._PROCESS_INFORMATION lpProcessInfo
             );
 
             [DllImport("advapi32.dll", SetLastError = true)]
@@ -399,11 +400,11 @@ namespace Utils.PlatformInvoke
                 IntPtr lpProcessAttributes,
                 IntPtr lpThreadAttributes,
                 Boolean bInheritHandles,
-                Utils.Win32.Advapi32.CREATION_FLAGS dwCreationFlags,
+                Execute.Win32.Advapi32.CREATION_FLAGS dwCreationFlags,
                 IntPtr lpEnvironment,
                 IntPtr lpCurrentDirectory,
-                ref Utils.Win32.ProcessThreadsAPI._STARTUPINFO lpStartupInfo,
-                out Utils.Win32.ProcessThreadsAPI._PROCESS_INFORMATION lpProcessInfo
+                ref Execute.Win32.ProcessThreadsAPI._STARTUPINFO lpStartupInfo,
+                out Execute.Win32.ProcessThreadsAPI._PROCESS_INFORMATION lpProcessInfo
             );
 
             [DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
@@ -417,21 +418,21 @@ namespace Utils.PlatformInvoke
                 int creationFlags,
                 IntPtr environment,
                 String currentDirectory,
-                ref Utils.Win32.ProcessThreadsAPI._STARTUPINFO startupInfo,
-                out Utils.Win32.ProcessThreadsAPI._PROCESS_INFORMATION processInformation
+                ref Execute.Win32.ProcessThreadsAPI._STARTUPINFO startupInfo,
+                out Execute.Win32.ProcessThreadsAPI._PROCESS_INFORMATION processInformation
             );
 
             [DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
             public static extern bool CreateProcessWithTokenW(
                 IntPtr hToken,
-                Utils.Win32.Advapi32.LOGON_FLAGS dwLogonFlags,
+                Execute.Win32.Advapi32.LOGON_FLAGS dwLogonFlags,
                 string lpApplicationName,
                 string lpCommandLine,
-                Utils.Win32.Advapi32.CREATION_FLAGS dwCreationFlags,
+                Execute.Win32.Advapi32.CREATION_FLAGS dwCreationFlags,
                 IntPtr lpEnvironment,
                 string lpCurrentDirectory,
-                ref Utils.Win32.ProcessThreadsAPI._STARTUPINFO lpStartupInfo,
-                out Utils.Win32.ProcessThreadsAPI._PROCESS_INFORMATION lpProcessInfo
+                ref Execute.Win32.ProcessThreadsAPI._STARTUPINFO lpStartupInfo,
+                out Execute.Win32.ProcessThreadsAPI._PROCESS_INFORMATION lpProcessInfo
             );
 
             [DllImport("advapi32.dll", SetLastError = true)]
@@ -450,14 +451,14 @@ namespace Utils.PlatformInvoke
             [DllImport("advapi32.dll", SetLastError = true)]
             public static extern Boolean CredReadW(
                 String target,
-                Utils.Win32.WinCred.CRED_TYPE type,
+                Execute.Win32.WinCred.CRED_TYPE type,
                 Int32 reservedFlag,
                 out IntPtr credentialPtr
             );
 
             [DllImport("advapi32.dll", SetLastError = true)]
             public static extern Boolean CredWriteW(
-                ref Utils.Win32.WinCred._CREDENTIAL userCredential,
+                ref Execute.Win32.WinCred._CREDENTIAL userCredential,
                 UInt32 flags
             );
 
@@ -465,16 +466,16 @@ namespace Utils.PlatformInvoke
             public static extern Boolean DuplicateTokenEx(
                 IntPtr hExistingToken,
                 UInt32 dwDesiredAccess,
-                ref Utils.Win32.WinBase._SECURITY_ATTRIBUTES lpTokenAttributes,
-                Utils.Win32.WinNT._SECURITY_IMPERSONATION_LEVEL ImpersonationLevel,
-                Utils.Win32.WinNT.TOKEN_TYPE TokenType,
+                ref Execute.Win32.WinBase._SECURITY_ATTRIBUTES lpTokenAttributes,
+                Execute.Win32.WinNT._SECURITY_IMPERSONATION_LEVEL ImpersonationLevel,
+                Execute.Win32.WinNT.TOKEN_TYPE TokenType,
                 out IntPtr phNewToken
             );
 
             [DllImport("advapi32.dll", SetLastError = true)]
             public static extern Boolean GetTokenInformation(
                 IntPtr TokenHandle,
-                Utils.Win32.WinNT._TOKEN_INFORMATION_CLASS TokenInformationClass,
+                Execute.Win32.WinNT._TOKEN_INFORMATION_CLASS TokenInformationClass,
                 IntPtr TokenInformation,
                 UInt32 TokenInformationLength,
                 out UInt32 ReturnLength
@@ -483,8 +484,8 @@ namespace Utils.PlatformInvoke
             [DllImport("advapi32.dll", SetLastError = true)]
             public static extern Boolean GetTokenInformation(
                 IntPtr TokenHandle,
-                Utils.Win32.WinNT._TOKEN_INFORMATION_CLASS TokenInformationClass,
-                ref Utils.Win32.WinNT._TOKEN_STATISTICS TokenInformation,
+                Execute.Win32.WinNT._TOKEN_INFORMATION_CLASS TokenInformationClass,
+                ref Execute.Win32.WinNT._TOKEN_STATISTICS TokenInformation,
                 UInt32 TokenInformationLength,
                 out UInt32 ReturnLength
             );
@@ -496,7 +497,7 @@ namespace Utils.PlatformInvoke
 
             [DllImport("advapi32.dll", SetLastError = true)]
             public static extern Boolean ImpersonateSelf(
-                Utils.Win32.WinNT._SECURITY_IMPERSONATION_LEVEL ImpersonationLevel
+                Execute.Win32.WinNT._SECURITY_IMPERSONATION_LEVEL ImpersonationLevel
             );
 
             [DllImport("advapi32.dll", SetLastError = true)]
@@ -504,8 +505,8 @@ namespace Utils.PlatformInvoke
                 string lpszUsername,
                 string lpszDomain,
                 string lpszPassword,
-                Utils.Win32.Advapi32.LOGON_TYPE dwLogonType,
-                Utils.Win32.Advapi32.LOGON_PROVIDER dwLogonProvider,
+                Execute.Win32.Advapi32.LOGON_TYPE dwLogonType,
+                Execute.Win32.Advapi32.LOGON_PROVIDER dwLogonProvider,
                 out IntPtr phToken
             );
 
@@ -518,7 +519,7 @@ namespace Utils.PlatformInvoke
                 ref UInt32 cchName,
                 StringBuilder ReferencedDomainName,
                 ref UInt32 cchReferencedDomainName,
-                out Utils.Win32.WinNT._SID_NAME_USE peUse
+                out Execute.Win32.WinNT._SID_NAME_USE peUse
             );
 
             [DllImport("advapi32.dll", SetLastError = true)]
@@ -533,13 +534,13 @@ namespace Utils.PlatformInvoke
             public static extern Boolean LookupPrivilegeValue(
                 String lpSystemName,
                 String lpName,
-                ref Utils.Win32.WinNT._LUID luid
+                ref Execute.Win32.WinNT._LUID luid
             );
 
             [DllImport("advapi32.dll", SetLastError = true)]
             public static extern Boolean PrivilegeCheck(
                 IntPtr ClientToken,
-                Utils.Win32.WinNT._PRIVILEGE_SET RequiredPrivileges,
+                Execute.Win32.WinNT._PRIVILEGE_SET RequiredPrivileges,
                 out IntPtr pfResult
             );
 
@@ -585,14 +586,14 @@ namespace Utils.PlatformInvoke
             public static extern IntPtr OpenSCManager(
                 string machineName,
                 string databaseName,
-                Utils.Win32.Advapi32.SCM_ACCESS dwAccess
+                Execute.Win32.Advapi32.SCM_ACCESS dwAccess
             );
 
             [DllImport("advapi32.dll", SetLastError = true)]
             public static extern IntPtr OpenService(
                 IntPtr hSCManager,
                 string lpServiceName,
-                Utils.Win32.Advapi32.SERVICE_ACCESS dwDesiredAccess
+                Execute.Win32.Advapi32.SERVICE_ACCESS dwDesiredAccess
             );
 
             [DllImport("advapi32.dll", SetLastError = true)]
@@ -600,10 +601,10 @@ namespace Utils.PlatformInvoke
                 IntPtr hSCManager,
                 string lpServiceName,
                 string lpDisplayName,
-                Utils.Win32.Advapi32.SERVICE_ACCESS dwDesiredAccess,
-                Utils.Win32.Advapi32.SERVICE_TYPE dwServiceType,
-                Utils.Win32.Advapi32.SERVICE_START dwStartType,
-                Utils.Win32.Advapi32.SERVICE_ERROR dwErrorControl,
+                Execute.Win32.Advapi32.SERVICE_ACCESS dwDesiredAccess,
+                Execute.Win32.Advapi32.SERVICE_TYPE dwServiceType,
+                Execute.Win32.Advapi32.SERVICE_START dwStartType,
+                Execute.Win32.Advapi32.SERVICE_ERROR dwErrorControl,
                 string lpBinaryPathName,
                 string lpLoadOrderGroup,
                 string lpdwTagId,
@@ -631,7 +632,7 @@ namespace Utils.PlatformInvoke
                 IntPtr hProcess,
                 UInt32 ProcessId,
                 SafeHandle hFile,
-                Utils.Win32.Dbghelp.MINIDUMP_TYPE DumpType,
+                Execute.Win32.Dbghelp.MINIDUMP_TYPE DumpType,
                 IntPtr ExceptionParam,
                 IntPtr UserStreamParam,
                 IntPtr CallbackParam

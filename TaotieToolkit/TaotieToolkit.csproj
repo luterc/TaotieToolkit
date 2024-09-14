@@ -58,8 +58,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.Protocols" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Management.Instrumentation" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -69,14 +73,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="modules\All.cs" />
+    <Compile Include="modules\Credentials\Mimikatz.cs" />
+    <Compile Include="modules\Credentials\Token.cs" />
     <Compile Include="modules\infogather\Browser\ChromiumBookmarksCommand.cs" />
     <Compile Include="modules\infogather\Browser\ChromiumHistoryCommand.cs" />
     <Compile Include="modules\infogather\Browser\FirefoxHistoryCommand.cs" />
     <Compile Include="modules\infogather\Browser\InternetExplorerFavoritesCommand.cs" />
-    <Compile Include="modules\infogather\security\AMSIProvidersCommand.cs" />
+    <Compile Include="modules\infogather\Keylogger.cs" />
     <Compile Include="modules\infogather\security\ApplockerEnumerating.cs" />
     <Compile Include="modules\infogather\security\AVAndEDR.cs" />
     <Compile Include="modules\infogather\security\Status.cs" />
+    <Compile Include="modules\infogather\Shares.cs" />
     <Compile Include="modules\infogather\system_info\AllUserDirectories.cs" />
     <Compile Include="modules\infogather\system_info\AutoRunsCommand.cs" />
     <Compile Include="modules\infogather\system_info\ClipboardGet.cs" />
@@ -90,9 +98,22 @@
     <Compile Include="modules\infogather\system_info\NetworkShares.cs" />
     <Compile Include="modules\infogather\system_info\ProcessList.cs" />
     <Compile Include="modules\infogather\system_info\RecentFiles.cs" />
+    <Compile Include="modules\Persistence\Autorun.cs" />
+    <Compile Include="modules\Persistence\COM.cs" />
+    <Compile Include="modules\Persistence\Service.cs" />
+    <Compile Include="modules\Persistence\ElevatedRegistryUserInitKey.cs" />
+    <Compile Include="modules\Persistence\UserInitMprLogonScriptKey.cs" />
+    <Compile Include="modules\Persistence\WMIEventSub.cs" />
+    <Compile Include="modules\PrivilegeEscalation\ComputerDefaults.cs" />
+    <Compile Include="modules\PrivilegeEscalation\DiskCleanup.cs" />
+    <Compile Include="modules\PrivilegeEscalation\EventVwr.cs" />
+    <Compile Include="modules\PrivilegeEscalation\FodHelper.cs" />
+    <Compile Include="modules\PrivilegeEscalation\Sdclt.cs" />
+    <Compile Include="modules\PrivilegeEscalation\Slui.cs" />
     <Compile Include="modules\systemcontrol\portforward\PortForward.cs" />
     <Compile Include="modules\systemcontrol\portforward\TcpHelp.cs" />
     <Compile Include="modules\systemcontrol\portforward\Tran.cs" />
+    <Compile Include="modules\systemcontrol\SharpDoor.cs" />
     <Compile Include="utils\command\CommandManager.cs" />
     <Compile Include="utils\command\ICommand.cs" />
     <Compile Include="utils\command\ICommandMarker.cs" />
@@ -124,15 +145,57 @@
     <Compile Include="utils\litjson\Netstandard15Polyfill.cs" />
     <Compile Include="utils\litjson\ParserToken.cs" />
     <Compile Include="utils\Native.cs" />
-    <Compile Include="utils\PlatformInvoke\Native.cs" />
-    <Compile Include="utils\PlatformInvoke\Win32.cs" />
     <Compile Include="utils\PrintTable.cs" />
     <Compile Include="utils\RegistryUtil.cs" />
+    <Compile Include="utils\SharpSploit\Credentials\Mimikatz.cs" />
+    <Compile Include="utils\SharpSploit\Credentials\Tokens.cs" />
+    <Compile Include="utils\SharpSploit\Enumeration\Clipboard.cs" />
+    <Compile Include="utils\SharpSploit\Enumeration\Domain.cs" />
+    <Compile Include="utils\SharpSploit\Enumeration\GPO.cs" />
+    <Compile Include="utils\SharpSploit\Enumeration\Host.cs" />
+    <Compile Include="utils\SharpSploit\Enumeration\Keylogger.cs" />
+    <Compile Include="utils\SharpSploit\Enumeration\Network.cs" />
+    <Compile Include="utils\SharpSploit\Enumeration\Registry.cs" />
+    <Compile Include="utils\SharpSploit\Evasion\Amsi.cs" />
+    <Compile Include="utils\SharpSploit\Evasion\ETW.cs" />
+    <Compile Include="utils\SharpSploit\Execution\Assembly.cs" />
+    <Compile Include="utils\SharpSploit\Execution\DynamicInvoke\Generic.cs" />
+    <Compile Include="utils\SharpSploit\Execution\DynamicInvoke\Native.cs" />
+    <Compile Include="utils\SharpSploit\Execution\DynamicInvoke\Win32.cs" />
+    <Compile Include="utils\SharpSploit\Execution\Injection\AllocationTechnique.cs" />
+    <Compile Include="utils\SharpSploit\Execution\Injection\ExecutionTechnique.cs" />
+    <Compile Include="utils\SharpSploit\Execution\Injection\Injector.cs" />
+    <Compile Include="utils\SharpSploit\Execution\Injection\PayloadType.cs" />
+    <Compile Include="utils\SharpSploit\Execution\Injection\SectionMapAllocationTechnique.cs" />
+    <Compile Include="utils\SharpSploit\Execution\Injection\VirtualAllocAllocationTechnique.cs" />
+    <Compile Include="utils\SharpSploit\Execution\ManualMap\Map.cs" />
+    <Compile Include="utils\SharpSploit\Execution\ManualMap\Overload.cs" />
+    <Compile Include="utils\SharpSploit\Execution\ManualMap\PE.cs" />
+    <Compile Include="utils\SharpSploit\Execution\Native.cs" />
+    <Compile Include="utils\SharpSploit\Execution\PlatformInvoke\Native.cs" />
+    <Compile Include="utils\SharpSploit\Execution\PlatformInvoke\Win32.cs" />
+    <Compile Include="utils\SharpSploit\Execution\ShellCode.cs" />
+    <Compile Include="utils\SharpSploit\Execution\Win32.cs" />
+    <Compile Include="utils\SharpSploit\Generic\Generic.cs" />
+    <Compile Include="utils\SharpSploit\LateralMovement\DCOM.cs" />
+    <Compile Include="utils\SharpSploit\LateralMovement\SCM.cs" />
+    <Compile Include="utils\SharpSploit\LateralMovement\WMI.cs" />
+    <Compile Include="utils\SharpSploit\Misc\CountdownEvent.cs" />
+    <Compile Include="utils\SharpSploit\Misc\Utilities.cs" />
+    <Compile Include="utils\SharpSploit\Persistence\Autorun.cs" />
+    <Compile Include="utils\SharpSploit\Persistence\COM.cs" />
+    <Compile Include="utils\SharpSploit\Persistence\Startup.cs" />
+    <Compile Include="utils\SharpSploit\Persistence\WMI.cs" />
+    <Compile Include="utils\SharpSploit\Pivoting\ReversePortForwarding.cs" />
+    <Compile Include="utils\SharpSploit\PrivilegeEscalation\Exchange.cs" />
     <Compile Include="utils\Utils.cs" />
     <Compile Include="utils\Win32.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <EmbeddedResource Include="Resources\powerkatz_x64.dll.comp" />
+    <EmbeddedResource Include="Resources\powerkatz_x86.dll.comp" />
+    <None Include="utils\SharpSploit\SharpSploit - Quick Command Reference.md" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Shell32">
@@ -145,7 +208,15 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\powerkatz_x64.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\powerkatz_x86.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="modules\LateralMovement\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

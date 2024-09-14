@@ -75,7 +75,7 @@ namespace Utils
             var hiveKey = _hiveKeys[registryHive];
             var flags = RegistryAccessMask.QueryValue | RegistryAccessMask.EnumerateSubKeys | _accessMasks[registryType];
 
-            var result = PlatformInvoke.Win32.Advapi32.RegOpenKeyEx(hiveKey, string.Empty, 0, (int)flags, out var keyHandlePointer);
+            var result = SharpSploit.Execution.PlatformInvoke.Win32.Advapi32.RegOpenKeyEx(hiveKey, string.Empty, 0, (int)flags, out var keyHandlePointer);
             if (result == 0)
             {
                 var safeRegistryHandleType = typeof(SafeHandleZeroOrMinusOneIsInvalid).Assembly.GetType("Microsoft.Win32.SafeHandles.SafeRegistryHandle");

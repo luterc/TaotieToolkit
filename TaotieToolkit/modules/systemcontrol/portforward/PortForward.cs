@@ -18,7 +18,6 @@ namespace TaotieToolkit.modules.systemcontrol.portforward
         //private static string remotehost { get; set; }
 
         //[ValueArgument(typeof(string), "rp", "remoteport", Description = "remote port")]
-        private static string remoteport { get; set; }
 
         private ArgParse argParse;
         private void DefineParams()
@@ -45,8 +44,7 @@ namespace TaotieToolkit.modules.systemcontrol.portforward
             {
                 argParse.Parse(args);
                 OptionSet activeOptionSet = argParse.GetActiveOptionSet();
-                Console.Out.WriteLine("Active optionset: " + activeOptionSet.Name);
-
+               
                 if (activeOptionSet.Name.Equals("Analysis command"))
                 {
                     Option option = activeOptionSet.GetOption("-lp");

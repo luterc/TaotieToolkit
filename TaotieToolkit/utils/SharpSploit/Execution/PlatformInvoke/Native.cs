@@ -5,7 +5,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-
+using Execute = SharpSploit.Execution;
 
 namespace SharpSploit.Execution.PlatformInvoke
 {
@@ -25,12 +25,12 @@ namespace SharpSploit.Execution.PlatformInvoke
         public static extern Int32 NtSetInformationToken(
             IntPtr TokenHandle,
             Int32 TokenInformationClass,
-            ref Utils.Win32.WinNT._TOKEN_MANDATORY_LABEL TokenInformation,
+            ref Execute.Win32.WinNT._TOKEN_MANDATORY_LABEL TokenInformation,
             Int32 TokenInformationLength
         );
 
         [DllImport("ntdll.dll", SetLastError = true)]
-        public static extern Utils.Native.NTSTATUS NtCreateSection(
+        public static extern Execute.Native.NTSTATUS NtCreateSection(
             ref IntPtr SectionHandle,
             uint DesiredAccess,
             IntPtr ObjectAttributes,
@@ -41,7 +41,7 @@ namespace SharpSploit.Execution.PlatformInvoke
         );
 
         [DllImport("ntdll.dll", SetLastError = true)]
-        public static extern Utils.Native.NTSTATUS NtMapViewOfSection(
+        public static extern Execute.Native.NTSTATUS NtMapViewOfSection(
             IntPtr SectionHandle,
             IntPtr ProcessHandle,
             ref IntPtr BaseAddress,
@@ -55,7 +55,7 @@ namespace SharpSploit.Execution.PlatformInvoke
         );
 
         [DllImport("ntdll.dll", SetLastError = true)]
-        public static extern Utils.Native.NTSTATUS NtUnmapViewOfSection(
+        public static extern Execute.Native.NTSTATUS NtUnmapViewOfSection(
             IntPtr hProc,
             IntPtr baseAddr
         );
@@ -79,7 +79,7 @@ namespace SharpSploit.Execution.PlatformInvoke
         [DllImport("ntdll.dll")]
         public static extern IntPtr NtCreateThreadEx(
             out IntPtr threadHandle,
-            Utils.Win32.WinNT.ACCESS_MASK desiredAccess,
+            Execute.Win32.WinNT.ACCESS_MASK desiredAccess,
             IntPtr objectAttributes,
             IntPtr processHandle,
             IntPtr startAddress,
@@ -94,7 +94,7 @@ namespace SharpSploit.Execution.PlatformInvoke
         [DllImport("ntdll.dll", SetLastError = true)]
         public static extern int NtQueryInformationProcess(
             IntPtr hProcess,
-            Utils.Native.PROCESSINFOCLASS pic,
+            Execute.Native.PROCESSINFOCLASS pic,
             IntPtr pi,
             int cb,
             out int pSize

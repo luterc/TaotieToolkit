@@ -13,7 +13,7 @@ namespace TaotieToolkit.modules.systemcontrol
             public string Description => "关机";
             public void Execute(string[] args)
             {
-                Utils.PowerCommand("/s /t 0");
+                Utils.PowerCommand("shutdown /s /t 0");
                 Console.WriteLine("[*] Shutting down..");
             }
 
@@ -26,7 +26,7 @@ namespace TaotieToolkit.modules.systemcontrol
             public string Description => "注销登录";
             public void Execute(string[] args)
             {
-                Utils.PowerCommand("/l");
+                Utils.PowerCommand("shutdown /l");
                 Console.WriteLine("[*] In Sandboxie");
             }
 
@@ -39,7 +39,7 @@ namespace TaotieToolkit.modules.systemcontrol
             public void Execute(string[] args)
             {
 
-                Utils.PowerCommand("/h");
+                Utils.PowerCommand("shutdown /h");
                 Console.WriteLine("[*] Hibernate..");
             }
 
@@ -51,7 +51,7 @@ namespace TaotieToolkit.modules.systemcontrol
             public string Description => "重启";
             public void Execute(string[] args)
             {
-                Utils.PowerCommand("/r /t 0");
+                Utils.PowerCommand("shutdown /r /t 0");
                 Console.WriteLine("[*] Rebooting computer..");
             }
 
